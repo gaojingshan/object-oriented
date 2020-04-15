@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <script>
+        // 现在的xiaoming是fun函数的参数
+        // 一
+        /* function fun(obj) {
+            return obj.yuwen + obj.shuxue + obj.yingyu
+        }
+        var xiaoming = {
+            'yuwen': 90,
+            'shuxue': 80,
+            'yingyu': 70,
+        }
+        var zongfen = fun(xiaoming);
+        console.log(zongfen); */
+
+        // ***********************************************************************
+
+        // 现在的xiaoming只能成为函数的上下文。
+        // 二
+        /* function fun() {
+            return this.yuwen + this.shuxue + this.yingyu;
+        }
+        var xiaoming = {
+            'yuwen': 90,
+            'shuxue': 80,
+            'yingyu': 70,
+            'fun': fun
+        }
+        var zongfen = xiaoming.fun();
+        console.log(zongfen); */
+
+        // ***********************************************************************
+
+        // 三
+        /* var obj = {
+            a: 1,
+            b: 2,
+            fun: function () {
+                console.log(this.a + this.b);
+            }
+        };
+
+        obj.fun(); */
+
+        // ***********************************************************************
+
+        // 四
+        /* var obj = {
+            a: 1,
+            b: 2,
+            fun: function () {
+                console.log(this.a + this.b);
+            }
+        };
+
+        // 全局变量就是window的属性，即window.a就是8，window.b就是9
+        var a = 8;
+        var b = 9;
+
+        // 提炼fun函数，单独提出来
+        var fun = obj.fun;
+        // 圆括号直接调用，this就是window对象，JS规定全局变量都是window的属性
+        fun();
+
+        // 对象打点调用，this就是那个对象
+        obj.fun(); */
+
+
+    </script>
+</body>
+
+</html>

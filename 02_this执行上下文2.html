@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <script>
+        // 一
+        /* function fun() {
+            return this.a + this.b;
+        }
+        // 函数的属性，对函数内部没有影响
+        fun.a = 5;
+        fun.b = 3;
+
+        var obj = {
+            a: 2,
+            b: 7,
+            fun: fun
+        };
+
+        var result = obj.fun(6, 1);
+        alert(result); */
+
+        // ***********************************************************************
+        // 二
+        /* var obj1 = {
+            a: 1,
+            b: 2,
+            add: function () {
+                return this.a + this.b;
+            }
+        };
+
+        // 给函数添加属性，对函数没有影响
+        obj1.add.a = 3;
+        obj1.add.b = 4;
+
+        var obj2 = {
+            a: 5,
+            b: obj1.add(6, 7),  
+            add: obj1.add       // 这里没有调用函数，只是引用了一下
+        };
+
+        var result = obj2.add(8, 9);
+
+        alert(result); */
+
+        // ***********************************************************************
+        // 三
+        /* function fun() {
+            alert(this.a + this.b);
+        }
+        var obj = {
+            a: 1,
+            b: 2,
+            c: [{
+                a: 3,
+                b: 4,
+                c: fun
+            }]
+        };
+        var a = 5;
+        obj.c[0].c(); */
+
+        // ***********************************************************************
+        // 四
+        /* var obj1 = {
+            a: 1,
+            b: 2,
+            getFun: function () {
+                var a = 3;
+                var b = 4;
+                return function () {
+                    return this.a + this.b;
+                }
+            }
+        }
+
+        var obj2 = {
+            a: 5,
+            b: 6,
+            fun: obj1.getFun()      // 把内部的函数赋予fun属性了，并没有调用内部函数
+        };
+
+        var result = obj2.fun();
+        alert(result); */
+
+        // ***********************************************************************
+        // 五
+        /* var a = 1;
+        var b = 2;
+        function fun(a, b) {
+            var a = 3;
+            var b = 4;
+            alert(this.a + this.b);
+        }
+        fun(5, 6); */
+
+        // ***********************************************************************
+        // 六
+        /*  var a = 1;
+         var b = 2;
+         var obj = {
+             a: 3,
+             b: 4,
+             fun: function () {
+                 alert(this.a + this.b);
+             }
+         }
+         // 提炼出来了
+         var f = obj.fun;
+         f();  */
+
+        // ***********************************************************************
+        // 七
+        /* function fun() {
+            return this.a + this.b;
+        }
+        var a = 1;
+        var b = 2;
+        var obj = {
+            a: 3,
+            b: fun(),
+            fun: fun
+        };
+        var result = obj.fun();
+        alert(result); */
+
+        // ***********************************************************************
+        // 八
+        /* var a = 1;
+        var b = 2;
+        function fun() {
+            var a = 3;
+            var b = 4;
+            return function (a, b) {
+                if (this.a > this.b) {
+                    alert(a + b);
+                } else {
+                    alert(a - b);
+                }
+            }
+        }
+
+        fun.a = 5;
+        fun.b = 6;
+        var f = fun();
+        f(7, 8); */
+
+        // ***********************************************************************
+        // 九
+         /* function fun(a) {
+             this.a = 1;
+             this.b = 2;
+             alert(a + b);
+         }
+         var a = 3;
+         var b = 4;
+         fun(); */
+
+        // ***********************************************************************
+        // 十
+        /* function fun() {
+            var a = 1;
+            alert(a + b);       // b就是undefined因为变量声明提升了
+            // 局部变量的b把全局变量的b遮蔽了
+            if (!b) {
+                this.b = 2;
+            } else {
+                var b = 3;
+            }
+        }
+        var a = 4;
+        var b = 5;
+        fun(6, 7); */
+
+        // ***********************************************************************
+        // 十一
+        /* var num = 7;
+        var obj = {
+            num: 9,
+            inner: {
+                num: 2,
+                print: function () {
+                    console.log(this.num);
+                }
+            }
+        }
+        num = 4;
+        obj.inner.print();          
+        var fn = obj.inner.print;
+        fn();                       
+        (obj.inner.print)();        // JS的骗招，加圆括号仍然是对象打点
+        (obj.inner.print = obj.inner.print)();  // 等号可以视为提炼函 数，圆括号直接调用 */
+
+        // ***********************************************************************
+    </script>
+</body>
+
+</html>
