@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <script>
+        /* function fun() {
+            this.a = 3;
+            this.b = 4;
+        }
+        var o = new fun();
+        console.log(o); */
+
+        /* function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        var xiaoming = new People('小明', 12, '男');
+        var xiaohong = new People('小红', 11, '女');
+
+        console.log(xiaoming);
+        console.log(xiaohong); */
+
+        function Car(color, brand, engine, gearbox, country) {
+            this.color = color;
+            this.brand = brand;
+            this.engine = engine;
+            this.gearbox = gearbox;
+            this.country = country;
+            if (this.country == '中国') {
+                this.type = '国产车';
+            } else {
+                this.type = '进口车';
+            }
+        }
+        var car1 = new Car('黑色', '宝马', '1.8T', '手动挡', '德国');
+        var car2 = new Car('红', '中华', '3.8T', '手自一体', '中国');
+        console.log(car1);
+        console.log(car2);
+
+    </script>
+
+</body>
+
+</html>
