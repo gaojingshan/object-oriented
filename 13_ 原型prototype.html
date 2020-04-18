@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <h1></h1>
+    <script>
+        /* function sum(a, b) {
+            return a + b;
+        }
+        console.log(sum.prototype);
+        console.log(sum.prototype != undefined); */
+
+
+        /* function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        var xiaoming = new People('小明', 12, '男');
+        console.log(xiaoming.__proto__ === People.prototype); */
+
+
+        /* function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        // 定义在原型上的a属性，也可以被xiaoming直接打点访问
+        People.prototype.a = 123;
+        var xiaoming = new People('小明', 12, '男');
+        // 定义在原型上的属性，也可以被打点访问
+        alert(xiaoming.a)
+        alert(xiaoming.__proto__.a) */
+
+
+        /* function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.a = 234;  // 如果实例身上已经有属性了，那么就不会访问原型。
+        }
+        People.prototype.a = 123;
+        var xiaoming = new People('小明', 12, '男');
+        // 定义在原型上的属性，也可以被打点访问
+        console.log(xiaoming.a);
+        console.log(xiaoming.__proto__.a); */
+
+
+        // 所有方法都定义在原型上  节约内存
+        function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        // 唱歌方法
+        People.prototype.singing = function () {
+            console.log(`我是${this.name},我在唱歌`);
+        }
+        // 吃水果方法
+        People.prototype.fruit = function (fruits) {
+            console.log(`我是${this.name},我喜欢吃${fruits}`);
+        }
+        var xiaoming = new People('小明', 12, '男');
+        var xiaohong = new People('小红', 18, '女');
+        xiaoming.singing();
+        xiaoming.fruit('橙子');
+        xiaohong.singing();
+        xiaohong.fruit('苹果');
+
+        console.log(xiaohong.__proto__ === xiaoming.__proto__);
+
+
+    </script>
 </body>
+
 </html>
