@@ -33,8 +33,18 @@
         fun.apply(obj, [2, 3]) */
 
 
-        function getLength() {
-            return this.length;  
+        /* function fun(a, b, c) {
+
+        }
+        console.log(fun.length); */
+
+
+        function getLength(a, b, c, d, e, f, g, h) {
+            console.log(arguments.callee.length);
+            console.log(arguments.length);
+            console.log(this.length);
+
+            return this.length;
         }
         function foo() {
             this.length = 1;

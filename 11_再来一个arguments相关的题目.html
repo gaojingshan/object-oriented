@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* function fun(a, b) {
+            var args = arguments;
+            return function (a, b, c) {
+                alert(args.callee.length);
+                alert(arguments.callee.length)
+            }
+        }
+        var f = fun(1, 2, 3, 4, 5, 6, 7, 8);
+        f(1, 2, 3, 4, 5) */
+
+
+        function fun() {
+            alert(this.length)
+        }
+        var obj = {
+            a: 1,
+            b: 2,
+            length: 2
+        }
+        fun.call(obj)
+        fun.apply(obj)
+    </script>
+</body>
+
+</html>
