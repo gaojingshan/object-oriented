@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = 4;
+
+        var obj = {
+            a: 3,
+            fn: (function () {
+                a++;
+                var a = 5;
+                return function () {
+                    alert(this.a);
+                };
+            })()
+        };
+
+        obj.fn();  //3
+        var fn = obj.fn;
+        fn(); //4
+    </script>
+</body>
+
+</html>

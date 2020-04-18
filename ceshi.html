@@ -8,8 +8,11 @@
 </head>
 
 <body>
-    <h1></h1>
+    <canvas width="600" height="400" id="canvas"></canvas>
     <script>
+        // 得到画布
+        var canvas=document.getElementById('canvas');
+        // 创建2D草
         /* var arr = [55, 66, 78, 88, function () {
             alert(this[1] - this[2])
         }]
@@ -244,6 +247,61 @@
         obj.fn2();
         console.log(window.number);  //8
         console.log(obj.number); //16 */
+
+        /* var number = 3;  // 9  27
+        var obj = {
+            number : 5, //15 45
+            fn1 : (function(){
+                this.number *= 3;
+                number = number * 2;
+                var number = 5;  //10  20
+                return function(){
+                    this.number *= 3;
+                    number *= 2;
+                    console.log(number);
+                }
+            })(),
+            fn2 : function(){
+                this.number *= 3;
+            }
+        };
+        var fn1 = obj.fn1;
+        console.log(number);  //9
+        fn1();  //10
+        obj.fn1(); //20
+        obj.fn2();
+        console.log(window.number);  //27
+        console.log(obj.number); //45 */
+
+        /* function People(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        People.prototype.sayHello = function () {
+            console.log('你好，我是' + this.name);
+        }
+
+        var xiaoming = new People('小明', 12, '男');
+
+        console.log(xiaoming.age);
+        xiaoming.sayHello(); */
+
+        var a=4;
+        var obj={
+            a:3,
+            fn:(function(){
+                a++;
+                var a=5;
+                return function(){
+                    alert(this.a)
+                }
+            })()
+        }
+        obj.fn();
+        var fn=obj.fn;
+        fn()
+
     </script>
 </body>
 
