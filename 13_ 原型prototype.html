@@ -10,6 +10,7 @@
 <body>
     <h1></h1>
     <script>
+        // 任何函数都有原型
         /* function sum(a, b) {
             return a + b;
         }
@@ -17,6 +18,7 @@
         console.log(sum.prototype != undefined); */
 
 
+        // 三角关系
         /* function People(name, age, sex) {
             this.name = name;
             this.age = age;
@@ -25,7 +27,7 @@
         var xiaoming = new People('小明', 12, '男');
         console.log(xiaoming.__proto__ === People.prototype); */
 
-
+        // 原型链查找
         /* function People(name, age, sex) {
             this.name = name;
             this.age = age;
@@ -68,11 +70,14 @@
         }
         var xiaoming = new People('小明', 12, '男');
         var xiaohong = new People('小红', 18, '女');
+        // 小明调用两个方法
         xiaoming.singing();
         xiaoming.fruit('橙子');
+        // 小红调用两个方法
         xiaohong.singing();
         xiaohong.fruit('苹果');
 
+        // 验证小红的原型和小明的原型是同一个东西
         console.log(xiaohong.__proto__ === xiaoming.__proto__);
 
 
