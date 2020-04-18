@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <script>
+        /* (function () {
+            alert('123');
+        })() */
+
+        /* // 瓢虫11星28星有毒
+        var star = 9;
+        var isDu = (function () {
+            if (star == 11 || star == 28) return true;
+            return false;
+        })()
+        console.log(isDu); */
+
+        var a = 5;
+        var b = 6;
+
+        var obj = {
+            a: 1,
+            b: 2,
+            c: (function () {
+                return this.a + this.b
+            })()
+        }
+        alert(obj.c)
+
+    </script>
+
+</body>
+
+</html>

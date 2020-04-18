@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <script>
+        function fun() {
+            console.log(this.a);
+        }
+        var a = 10;
+        
+        // 规则4 定时器调用函数
+        setInterval(fun, 1000);
+
+        setInterval(function () {
+            // 规则2  圆括号直接调用
+            fun();
+        }, 1000)
+    </script>
+</body>
+
+</html>
