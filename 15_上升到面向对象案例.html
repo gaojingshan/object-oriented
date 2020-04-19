@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        // 定义一个“组合”类。自己管理自己，它就是一个类。它最大的优点就是自治，不影响别人
+        function Zuhe() {
+            // 信号量，自己这个图片的序号
+            this.a = 0;
+            // 调用自己的初始化方法
+            this.init();
+            // 调用自己的添加监听方法
+            this.bindEvent();
+        }
+        // 初始化
+        Zuhe.prototype.init = function () {
+            // 创建一个box
+            this.box = document.createElement('div');
+            // 添加类名
+            this.box.className = 'box';
+
+            // box中的内容
+            var str = `
+                <button disabled>-</button>
+                <img src="images/0.png">
+                <button>+</button>
+            `;
+            // 让box中添加str
+            this.box.innerHTML = str;
+            // 让app中添加box
+            document.getElementById('app').appendChild(this.box);
+
+            // 得到内部元素
+            this.btn1 = this.box.getElementsByTagName('button')[0];
+            this.img = this.box.getElementsByTagName('img')[0];
+            this.btn2 = this.box.getElementsByTagName('button')[1];
+        }
+        // 添加事件监听
+        Zuhe.prototype.bindEvent = function () {
+            // 备份this
+            var self = this;
+            this.btn1.onclick = function () {
+                self.a--;
+                self.img.src = `images/${self.a}.png`;
+                self.btn2.disabled = false;
+                if (self.a == 0) {
+                    self.btn1.disabled = true
+                }
+            }
+            this.btn2.onclick = function () {
+                self.a++;
+                self.img.src = `images/${self.a}.png`;
+                // 点击加号自己的减号一定能点
+                self.btn1.disabled = false;
+                if (self.a == 2) {
+                    self.btn2.disabled = true;
+                }
+            }
+        }
+        new Zuhe();
+        new Zuhe();
+        new Zuhe();
+    </script>
+</body>
+
+</html>

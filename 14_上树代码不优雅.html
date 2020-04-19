@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <script>
+        // 上树部分代码不优雅
+        function Zuhe() {
+            // 调用自己的初始化方法
+            this.init();
+        }
+        // 初始化
+        Zuhe.prototype.init = function () {
+            // 把dom都定义为实例的属性
+            this.box = document.createElement('div');
+            this.btn1 = document.createElement('button');
+            this.btn2 = document.createElement('button');
+
+            // 添加文字
+            this.btn1.innerHTML = '-';
+            this.btn2.innerHTML = '+';
+
+            // 上树
+            this.box.appendChild(this.btn1);
+            this.box.appendChild(this.btn2);
+            document.body.appendChild(this.box)
+        }
+    </script>
+</body>
+
+</html>

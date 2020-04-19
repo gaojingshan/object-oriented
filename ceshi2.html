@@ -1,69 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 </head>
-
 <body>
-    <canvas width="600" height="400" id="canvas"></canvas>
-    <script>
-        /* var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-
-        ctx.fillStyle = 'red';
-        ctx.fillRect(100, 160, 90, 200); */
-
-        /* var canvas=document.getElementById('canvas');
-        var ctx=canvas.getContext('2d');
-        ctx.fillStyle='#fc8';
-        ctx.fillRect(0,0,100,100) */
-
-        /* var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        ctx.fillStyle='red';
-        ctx.fillRect(100,100,10,10); */
-
-        /* var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-
-        // 开始绘制虚拟线段
-        ctx.beginPath();
-        // 移动画笔
-        ctx.moveTo(100, 100);
-        // 绘制
-        ctx.lineTo(40, 200); */
-
-        function getLength() {
-            return this.length;
-        }
-        function foo() {
-            this.length = 1;
-            return (function () {
-                var length = 2; 
-                return {
-                    length: function (a, b, c) {
-                        return this.arr.length
-                    },
-                    arr: [1, 2, 3, 4],
-                    info: function () {
-                        return getLength.call(this.length);
-                    }
-                }
-            })();
-        }
-        var result = foo().info();
-        alert(result);// 3 
-
-    </script>
+    
 </body>
-
 </html>
