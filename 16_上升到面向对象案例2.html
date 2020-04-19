@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .t1 {
+            background-color: cyan;
+        }
+
+        .t2 {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            <input type="text" id="kuang">
+            <button id="tj_btn">添加</button>
+        </p>
+        <ul id="list"></ul>
+    </div>
+    <script>
+        // 主功能类
+        function Main() {
+            this.tj_btn = document.getElementById('tj_btn');
+            this.kuang = document.getElementById('kuang');
+            // 让kuang聚焦
+            this.kuang.focus();
+            // 备份this
+            var self = this;
+            // 添加监听
+            this.tj_btn.onclick = function () {
+                // 实例化一个Title，参数就是你填写的title属性
+                new Title(self.kuang.value);
+                // 让kuang聚焦
+                self.kuang.focus();
+                // 让kuang清空
+                self.kuang.value = '';
+            }
+        }
+        // Title类
+        function Title(title) {
+            // 获取输入框的title
+            this.title = title;
+            // 自己的信号量，自己这个条是否在编辑状态
+            this.isEditing = false;
+            // 调用初始化方法
+            this.init();
+            // 调用绑定监听方法
+            this.bindEvent();
+        }
+        Title.prototype.init = function () {
+            // 创建li标签，创建自己的DOM
+            this.box = document.createElement('li');
+            // li里面的内容
+            var str = `
+                <input value="${this.title}" style="display:none">
+                <span>${this.title}</span>
+                <button class="t1">编辑</button>
+                <button>删除</button>
+            `;
+            // 内部元素
+            this.box.innerHTML = str;
+            // 上树
+            document.getElementById('list').appendChild(this.box);
+
+            // 得到DOM
+            this.input = this.box.getElementsByTagName('input')[0];
+            this.span = this.box.getElementsByTagName('span')[0];
+            this.btn1 = this.box.getElementsByTagName('button')[0];
+            this.btn2 = this.box.getElementsByTagName('button')[1];
+
+
+        }
+        Title.prototype.bindEvent = function () {
+            // 备份
+            var self = this;
+            // 点击编辑按钮
+            this.btn1.onclick = function () {
+                // 看自己是否处于编辑状态
+                if (!self.isEditing) {
+                    // 让自己变为编辑状态
+                    self.isEditing = true;
+                    // 文本框显示
+                    self.input.style.display = "inline-block";
+                    // span隐藏
+                    self.span.style.display = "none";
+                    // 按钮的类名
+                    self.btn1.className = "t2";
+                    // 按钮改变文字
+                    self.btn1.innerHTML = "确定";
+                    // 聚焦
+                    self.input.focus();
+                    // 选中
+                    self.input.select();
+
+                } else {
+                    // 让自己变为不编辑状态
+                    self.isEditing = false;
+                    // 改变title
+                    self.title = self.input.value;
+                    // 改变span中的字
+                    self.span.innerHTML = self.title;
+                    // 文本框隐藏
+                    self.input.style.display = "none";
+                    // span显示
+                    self.span.style.display = "inline-block";
+                     // 按钮的类名
+                    self.btn1.className = "t1";
+                    // 按钮改变文字
+                    self.btn1.innerHTML = "编辑";
+                }
+            }
+            // 删除按钮
+            this.btn2.onclick = function () {
+                self.box.parentNode.removeChild(self.box)
+            }
+        }
+        // new出来主功能类，这样程序就运行了
+        new Main();
+    </script>
+</body>
+
+</html>
