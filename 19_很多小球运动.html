@@ -11,7 +11,7 @@
             padding: 0;
         }
 
-        #canvas {
+        canvas {
             border: 1px solid #000;
         }
     </style>
@@ -20,28 +20,70 @@
 <body>
     <canvas width="600" height="400" id="canvas"></canvas>
     <script>
+        // 得到画布
         var canvas = document.getElementById('canvas');
+        // 创建2D操纵对象
         var ctx = canvas.getContext('2d');
 
-        // 信号量
-        var x = 40;
-        var y = 40;
-        setInterval(function () {
-            ctx.clearRect(0, 0, 600, 400);
-            x += 6;
-            if (x >= 600) {
-                y += 30;
-                x = 40;
+        // 小球数组
+        var ballArr = [];
+
+        // ****************************************************
+        // 小球类，是蓝图，没用，废纸一张
+        function Ball(x, y, r, speed) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+            this.color = `rgba(${~~(Math.random() * 255)},${~~(Math.random() * 255)},${~~(Math.random() * 255)},${Math.random() * 1})`;
+            this.speed = speed;
+            // 随机x、y、r增量
+            this.dx = Math.random() * 8 - 4;
+            this.dy = Math.random() * 8 - 4;
+            // 将实例推入数组
+            ballArr.push(this);
+        }
+
+        // 更新方法
+        Ball.prototype.update = function () {
+            this.x += this.dx;
+            this.y += this.dy;
+            this.r -= 0.2;
+            // 半径不能小于0
+            if (this.r < 0) {
+                this.r = 0
             }
-            if (y >= 400) {
-                x = 40;
-                y = 40;
-            }
+        }
+
+        // 渲染方法
+        Ball.prototype.render = function () {
             ctx.beginPath();
-            ctx.arc(x, y, 40, 0, 7, false);
-            ctx.fillStyle = 'red';
+            ctx.arc(this.x, this.y, this.r, 0, 7, false);
+            ctx.fillStyle = this.color;
             ctx.fill();
-        }, 20)
+        }
+        // ****************************************************
+
+        // 定时器，唯一的定时器
+        setInterval(function () {
+            // 清屏
+            ctx.clearRect(0, 0, 600, 400);
+
+            // 遍历每一个小球，调用它们的update、render方法
+            for (var i = 0; i < ballArr.length; i++) {
+                ballArr[i].update();
+                ballArr[i].render();
+            }
+        }, 20);
+
+        // 鼠标移动
+        canvas.onmousemove = function (e) {
+            var x = e.offsetX;
+            var y = e.offsetY;
+
+            // 小球一旦出生，就进入定时器，定时器就以每秒50次的速度调用
+            // 小球的update和render方法，从而小球就运动了。
+            new Ball(x, y, 30, 3)
+        }
     </script>
 </body>
 
