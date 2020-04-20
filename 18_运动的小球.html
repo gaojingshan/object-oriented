@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // 信号量
+        var x = 40;
+        var y = 40;
+        setInterval(function () {
+            ctx.clearRect(0, 0, 600, 400);
+            x += 6;
+            if (x >= 600) {
+                y += 30;
+                x = 40;
+            }
+            if (y >= 400) {
+                x = 40;
+                y = 40;
+            }
+            ctx.beginPath();
+            ctx.arc(x, y, 40, 0, 7, false);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+        }, 20)
+    </script>
+</body>
+
+</html>
