@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // 画方
+        ctx.fillStyle = '#f38';
+        ctx.fillRect(90, 100, 100, 100);
+
+        ctx.fillStyle = 'lawngreen';
+        ctx.fillRect(300, 20, 50, 100);
+
+        // 画折线
+        ctx.beginPath();
+        ctx.moveTo(200, 200);
+        ctx.lineTo(200, 200);
+        ctx.lineTo(300, 200);
+        ctx.lineTo(200, 300);
+        ctx.closePath();
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 6;
+        ctx.stroke();
+        ctx.fillStyle = 'red'
+        ctx.fill();
+
+        // 画圆
+        ctx.beginPath();
+        ctx.arc(450, 250, 100, 0, 6.3, false);
+        ctx.strokeStyle = 'green';
+        ctx.stroke();
+        ctx.fillStyle = 'orange';
+        ctx.fill();
+
+        // 画同心圆
+        for (var i = 20; i < 200; i += 20) {
+            ctx.beginPath();
+            ctx.arc(250, 200, i, 0, 6.3, false);
+            ctx.strokeStyle = 'green';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+    </script>
+</body>
+
+</html>
