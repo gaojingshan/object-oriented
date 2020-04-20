@@ -34,12 +34,20 @@
             this.x = x;
             this.y = y;
             this.r = r;
-            this.color = `rgba(${~~(Math.random() * 255)},${~~(Math.random() * 255)},${~~(Math.random() * 255)},${Math.random() * 1})`;
+            // this.color = `rgba(${~~(Math.random() * 255)},${~~(Math.random() * 255)},${~~(Math.random() * 255)},${Math.random() * 1})`;
+            // 颜色
+            this.color = (function () {
+                // 所有颜色
+                var arr = ['#66CCCC', '#CCFF66', '#FF99CC'];
+                // 随机一个颜色
+                return arr[parseInt(Math.random() * arr.length)]
+            })()
             this.speed = speed;
-            // 随机x、y、r增量
+            // 随机x、y增量
             this.dx = Math.random() * 8 - 4;
             this.dy = Math.random() * 8 - 4;
             // 将实例推入数组
+            // 这句话非常关键，把儿子送到幼儿园，让老师蹂躏它
             ballArr.push(this);
         }
 
@@ -47,10 +55,23 @@
         Ball.prototype.update = function () {
             this.x += this.dx;
             this.y += this.dy;
-            this.r -= 0.2;
+            this.r -= 0.1;
             // 半径不能小于0
             if (this.r < 0) {
                 this.r = 0
+            }
+            // 触底反弹
+            if (this.y > 400 - this.r) {
+                this.dy *= -1;
+            }
+            if (this.x > 600 - this.r) {
+                this.dx *= -1;
+            }
+            if (this.x < this.r) {
+                this.dx *= -1;
+            }
+            if (this.y < this.r) {
+                this.dy *= -1;
             }
         }
 
@@ -77,12 +98,13 @@
 
         // 鼠标移动
         canvas.onmousemove = function (e) {
+            // 得到鼠标位置
             var x = e.offsetX;
             var y = e.offsetY;
 
             // 小球一旦出生，就进入定时器，定时器就以每秒50次的速度调用
             // 小球的update和render方法，从而小球就运动了。
-            new Ball(x, y, 30, 3)
+            new Ball(x, y, 30, Math.random() * 10)
         }
     </script>
 </body>
