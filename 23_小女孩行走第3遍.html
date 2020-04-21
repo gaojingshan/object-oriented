@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>小女孩行走</title>
     <style>
         * {
             margin: 0;
@@ -23,20 +23,24 @@
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
 
-        var img = new Image();
-        img.onload = function () {
-            // 显示全部
-            // ctx.drawImage(img, 20, 20);
-
-            // 缩放
-            // ctx.drawImage(img, 20, 20, 200, 100);
-
-            // 切片
-            ctx.drawImage(img, 242, 107, 130, 122, 100, 100, 130*2, 122*2)
-
+        // 女孩类
+        function Girl() {
+            this.x = 100;
+            this.y = 100;
+            this.step = 0;
+        }
+        Girl.prototype.update = function () {
 
         }
-        img.src = 'images/gou.jpg'
+        Girl.prototype.render = function () {
+
+        }
+        var f=0;
+        setInterval(function(){
+            ctx.clearRect(0,0,600,400);
+            f++;
+            
+        })
     </script>
 </body>
 
