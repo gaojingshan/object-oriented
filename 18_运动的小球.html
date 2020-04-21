@@ -28,7 +28,7 @@
         var y = 40;
         setInterval(function () {
             ctx.clearRect(0, 0, 600, 400);
-            x += 6;
+            x += 2;
             if (x >= 600) {
                 y += 30;
                 x = 40;
@@ -38,7 +38,7 @@
                 y = 40;
             }
             ctx.beginPath();
-            ctx.arc(x, y, 40, 0, 7, false);
+            ctx.arc(x, y, 40, 0, Math.PI * 2, false);
             ctx.fillStyle = 'red';
             ctx.fill();
         }, 20)

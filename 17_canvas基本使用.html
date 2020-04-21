@@ -20,9 +20,11 @@
 <body>
     <canvas width="600" height="400" id="canvas"></canvas>
     <script>
+        // 得到canvas画布
         var canvas = document.getElementById('canvas');
+        // 画布没有什么用，必须用画布创建渲染上下文才行
         var ctx = canvas.getContext('2d');
-
+        // 今后的绘制都是使用ctx来实现的
         // 画方
         ctx.fillStyle = '#f38';
         ctx.fillRect(90, 100, 100, 100);
@@ -45,7 +47,7 @@
 
         // 画圆
         ctx.beginPath();
-        ctx.arc(450, 250, 100, 0, 6.3, false);
+        ctx.arc(450, 250, 100, 0, Math.PI * 2, false);
         ctx.strokeStyle = 'green';
         ctx.stroke();
         ctx.fillStyle = 'orange';
@@ -54,7 +56,7 @@
         // 画同心圆
         for (var i = 20; i < 200; i += 20) {
             ctx.beginPath();
-            ctx.arc(250, 200, i, 0, 6.3, false);
+            ctx.arc(250, 200, i, 0, Math.PI * 2, false);
             ctx.strokeStyle = 'green';
             ctx.lineWidth = 2;
             ctx.stroke();

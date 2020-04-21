@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="600" height="400"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        // ctx.fillStyle = 'red';
+        // ctx.fillRect(100, 100, 200, 200)
+
+        // ctx.beginPath();
+        // ctx.moveTo(200, 200);
+        // ctx.lineTo(200, 300);
+        // ctx.lineTo(400, 300);
+        // ctx.lineTo(400, 100);
+        // ctx.lineTo(100, 100);
+        // ctx.closePath();
+        // ctx.lineWidth = 15;
+        // ctx.strokeStyle = 'blue';
+        // ctx.stroke();
+        // ctx.fillStyle = 'orange'
+        // ctx.fill();
+
+        // 画弧
+        // ctx.beginPath();
+        // ctx.arc(200, 200, 100, 0, 1, false)
+        // ctx.stroke();
+
+        // 画圆
+        /* ctx.beginPath();
+        ctx.arc(100, 100, 50, 0, Math.PI * 2, false);
+        ctx.fillStyle = 'red';
+        ctx.fill(); */
+
+        // 画同心圆
+        /* for (var i = 0; i < 20; i++) {
+            ctx.beginPath();
+            ctx.arc(200, 200, 40 + i * 5, 0, Math.PI * 2, false);
+            ctx.stroke();
+        } */
+
+        var index = 0;
+        setInterval(function () {
+            ctx.clearRect(0, 0, 600, 400);
+            index++;
+            ctx.beginPath();
+            ctx.arc(100 + index, 100, 20, 0, Math.PI * 2, true);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+        }, 20)
+
+    </script>
+</body>
+
+</html>
