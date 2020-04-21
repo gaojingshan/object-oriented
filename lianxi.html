@@ -18,54 +18,55 @@
 </head>
 
 <body>
+    <button id="btn">按我出现小球</button>
     <canvas id="canvas" width="600" height="400"></canvas>
     <script>
+        var btn = document.getElementById('btn');
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
-        // ctx.fillStyle = 'red';
-        // ctx.fillRect(100, 100, 200, 200)
 
-        // ctx.beginPath();
-        // ctx.moveTo(200, 200);
-        // ctx.lineTo(200, 300);
-        // ctx.lineTo(400, 300);
-        // ctx.lineTo(400, 100);
-        // ctx.lineTo(100, 100);
-        // ctx.closePath();
-        // ctx.lineWidth = 15;
-        // ctx.strokeStyle = 'blue';
-        // ctx.stroke();
-        // ctx.fillStyle = 'orange'
-        // ctx.fill();
+        var ballArr = [];
+        // 小球类
+        function Ball(x, y, r, speed) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+            this.color = `rgba(${~~(Math.random() * 255)},${~~(Math.random() * 255)},${~~(Math.random() * 255)},${Math.random()})`;
+            this.speed = speed;
+            ballArr.push(this);
+        }
 
-        // 画弧
-        // ctx.beginPath();
-        // ctx.arc(200, 200, 100, 0, 1, false)
-        // ctx.stroke();
+        // 更新小球
+        Ball.prototype.update = function () {
+            this.x += this.speed
+        }
 
-        // 画圆
-        /* ctx.beginPath();
-        ctx.arc(100, 100, 50, 0, Math.PI * 2, false);
-        ctx.fillStyle = 'red';
-        ctx.fill(); */
-
-        // 画同心圆
-        /* for (var i = 0; i < 20; i++) {
+        // 渲染小球
+        Ball.prototype.render = function () {
             ctx.beginPath();
-            ctx.arc(200, 200, 40 + i * 5, 0, Math.PI * 2, false);
-            ctx.stroke();
-        } */
-
-        var index = 0;
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, true);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+        // 帧变量
+        var f = 0;
         setInterval(function () {
             ctx.clearRect(0, 0, 600, 400);
-            index++;
-            ctx.beginPath();
-            ctx.arc(100 + index, 100, 20, 0, Math.PI * 2, true);
-            ctx.fillStyle = 'red';
-            ctx.fill();
-        }, 20)
+            // 显示帧编号
+            f++;
+            ctx.font = '25px 宋体';
+            ctx.fillStyle = 'blue';
+            ctx.fillText(f, 10, 30);
 
+            for (var i = 0; i < ballArr.length; i++) {
+                ballArr[i].render();
+                ballArr[i].update();
+            }
+
+        }, 20)
+        btn.onclick = function () {
+            new Ball(100, 100, 10, 4);
+        }
     </script>
 </body>
 
