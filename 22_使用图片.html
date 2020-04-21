@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" id="canvas"></canvas>
+    <script>
+        // 得到画布
+        var canvas = document.getElementById('canvas');
+        // 画布没有什么用，必须用画布创建渲染上下文才行
+        var ctx = canvas.getContext('2d');
+
+        // 实例化一个图片
+        var img = new Image();
+        //设置onload事件
+        img.onload = function () {
+            // 1、在坐标10,10的位置开始，完整的显示图片
+            // ctx.drawImage(img,10,10);
+
+            // 2、缩放
+            // 在坐标10,10的位置开始，显示一个宽150，高200的图片
+            // ctx.drawImage(img, 10, 10, 150, 200)
+
+            // 3、切片
+            // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+            // 第一个参数和其它的是相同的，都是一个图像或者另一个 canvas 的引用。其它8个参数最好是参照右边的图解，前4个是定义图像源的切片位置和大小，后4个则是定义切片的目标显示位置和大小。
+            ctx.drawImage(img, 254, 123, 108, 91, 100, 100, 108 * 2, 91 * 2)
+        }
+        // 设置src,一旦设置src,图片就开始加载了，就会慢慢onload
+        img.src = 'images/gou.jpg';
+
+    </script>
+</body>
+
+</html>
