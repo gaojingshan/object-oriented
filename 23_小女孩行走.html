@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小女孩行走</title>
+    <title>Document</title>
     <style>
         * {
             margin: 0;
@@ -20,49 +20,56 @@
 <body>
     <canvas width="600" height="400" id="canvas"></canvas>
     <script>
+        // 得到canvas画布
         var canvas = document.getElementById('canvas');
+        // 画布没有什么用，必须用画布创建渲染上下文才行
         var ctx = canvas.getContext('2d');
-        // 小女孩类
+
+        // 小女孩类，构造函数的首字母一般来说应该大写
         function Girl() {
             this.x = 100;
             this.y = 100;
+            // 步子
             this.step = 0;
-
         }
-        // 更改女孩
         Girl.prototype.update = function () {
             this.x++;
-            
-            if(f%3==0){
+            // 如果帧编号是3的倍数，我们迈步，不是每帧都迈步
+            if (f % 3 == 0) {
                 this.step++;
             }
+            // 设计师只给了我们8帧形象
             if (this.step > 7) {
-                this.step = 0
+                this.step = 0;
             }
         }
-        // 渲染小女孩
         Girl.prototype.render = function () {
-            ctx.drawImage(img, 79 * this.step, 108 * 2, 79, 108, this.x, this.y, 79, 108)
+            ctx.drawImage(img, 79 * this.step, 108 * 2, 79, 108, this.x, this.y, 79, 108);
         }
-        // 产生一个实例
-        var alice = new Girl();
 
-        // 帧
+        // 产生一个实例
+        var gjs = new Girl();
+
+        // 帧编号
         var f = 0;
+        // 思路：只有图片加载好了，定时器才开始
         var img = new Image();
         img.onload = function () {
+            // 定时器
             setInterval(function () {
+                // 清屏
                 ctx.clearRect(0, 0, 600, 400);
-                // 帧变化
+                // 帧编号加1
                 f++;
                 ctx.font = '20px 微软雅黑';
-                ctx.fillText(f, 10, 30);
-                
-                alice.update();
-                alice.render();
+                // 打印帧编号
+                ctx.fillText(f, 10, 20);
+
+                // 调用gjs的update方法、render方法
+                gjs.update();
+                gjs.render();
 
             }, 20)
-
         }
         img.src = 'images/girl.png';
 
