@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // 小女孩类
+        function Girl() {
+            this.x = 100;
+            this.y = 100;
+            this.step = 0;
+            // 状态类，是否在行走
+            this.isMove = false;
+            // 状态类，方向，0、1、2、3分别代表下左右上
+            this.direction = 2;
+
+        }
+        // 更新方法
+        Girl.prototype.update = function () {
+            if (this.isMove) {
+                if (this.direction == 0) {
+                    this.y++;
+                } else if (this.direction == 1) {
+                    this.x--;
+                } else if (this.direction == 2) {
+                    this.x++;
+                } else if (this.direction == 3) {
+                    this.y--;
+                }
+                if (f % 3 == 0) {
+                    this.step++;
+                }
+                if (this.step > 7) {
+                    this.step = 0;
+                }
+            }
+        }
+        // 渲染方法
+        Girl.prototype.render = function () {
+            ctx.drawImage(img, 79 * this.step, 108 * this.direction, 79, 108, this.x, this.y, 79, 108);
+        }
+        // 行走
+        Girl.prototype.run = function () {
+            this.isMove = true;
+        }
+        // 停止
+        Girl.prototype.stop = function () {
+            this.isMove = false;
+            this.step = 0;
+        }
+        // 方向改变
+        Girl.prototype.changeDirection = function (d) {
+            this.direction = d;
+        }
+        // 实例化一个对象
+        var gjs = new Girl();
+        // 帧编号
+        var f = 0;
+        var img = new Image();
+        img.onload = function () {
+            // 定时器
+            setInterval(function () {
+                // 清空
+                ctx.clearRect(0, 0, 600, 400);
+                // 帧编号加1
+                f++;
+                ctx.font = '20px 微软雅黑';
+                ctx.fillText(f, 10, 20);
+                gjs.update();
+                gjs.render();
+            }, 20)
+        }
+        img.src = 'images/girl.png';
+
+        // 鼠标按键
+        document.onkeydown = function (e) {
+            if (e.keyCode == 37) {
+                gjs.changeDirection(1);
+                gjs.run();
+            } else if (e.keyCode == 38) {
+                gjs.changeDirection(3);
+                gjs.run();
+            } else if (e.keyCode == 39) {
+                gjs.changeDirection(2);
+                gjs.run();
+            } else if (e.keyCode == 40) {
+                gjs.changeDirection(0);
+                gjs.run();
+            }
+        }
+        document.onkeyup = function (e) {
+            if (e.keyCode >= 37 && e.keyCode <= 40) {
+                gjs.stop();
+            }
+        }
+    </script>
+</body>
+
+</html>
