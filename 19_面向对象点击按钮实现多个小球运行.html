@@ -11,6 +11,10 @@
             padding: 0;
         }
 
+        h1 {
+            color: coral;
+        }
+
         canvas {
             border: 1px solid #000;
         }
@@ -18,7 +22,8 @@
 </head>
 
 <body>
-    <button id="btn">按我出现一个小球</button>
+    <h1>按下画布出现粉色小球</h1>
+    <button id="btn">按我出现红色小球</button>
     <canvas width="600" height="400" id="canvas"></canvas>
     <script>
         // 得到按钮
@@ -74,6 +79,10 @@
         // 点击按钮
         btn.onclick = function () {
             new Ball(100, 100, 20, 'red', 4)
+        }
+        // 鼠标在画布中按下
+        canvas.onmousedown = function (e) {
+            new Ball(e.offsetX, e.offsetY, 20, 'pink', 2)
         }
     </script>
 </body>
