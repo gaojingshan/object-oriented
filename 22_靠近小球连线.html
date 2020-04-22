@@ -36,7 +36,7 @@
             this.y = Math.random() * 400;
             // 半径
             this.r = 20;
-            this.color = 'orange';
+            this.color = '#ccc';
             // 随机它的x、y增量，不能随机出0、0
             do {
                 this.dx = parseInt(Math.random() * 8) - 4;
@@ -75,7 +75,7 @@
                     ctx.beginPath();
                     ctx.moveTo(this.x, this.y);
                     ctx.lineTo(ballArr[i].x, ballArr[i].y);
-                    ctx.strokeStyle = 'orange';
+                    ctx.strokeStyle = '#ccc';
                     ctx.stroke();
                 }
             }
