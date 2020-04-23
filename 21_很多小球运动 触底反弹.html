@@ -34,6 +34,8 @@
             this.x = x;
             this.y = y;
             this.r = r;
+            // 透明度
+            this.opa = 1;
             // this.color = `rgba(${~~(Math.random() * 255)},${~~(Math.random() * 255)},${~~(Math.random() * 255)},${Math.random() * 1})`;
             // 颜色
             this.color = (function () {
@@ -56,6 +58,16 @@
             this.x += this.dx;
             this.y += this.dy;
             this.r -= 0.1;
+            this.opa -= 0.01;
+            // 判断透明度是不是小于0了
+            if (this.opa < 0) {
+                // 遍历数组，看看哪项是自己
+                for (var i = 0; i < ballArr.length; i++) {
+                    if (ballArr[i] == this) {
+                        ballArr.splice(i, 1);
+                    }
+                }
+            }
             // 半径不能小于0
             if (this.r < 0) {
                 this.r = 0
@@ -80,7 +92,14 @@
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.r, 0, 7, false);
             ctx.fillStyle = this.color;
+            // 改变透明度
+            // 先保存
+            ctx.save();
+            ctx.globalAlpha = this.opa;
+            // 填充
             ctx.fill();
+            // 恢复
+            ctx.restore();
         }
         // ****************************************************
 
@@ -92,7 +111,8 @@
             // 遍历每一个小球，调用它们的update、render方法
             for (var i = 0; i < ballArr.length; i++) {
                 ballArr[i].update();
-                ballArr[i].render();
+                // 短路语法，表示“只有ballArr[i]还健在，没有自杀，才渲染”
+                ballArr[i] && ballArr[i].render();
             }
         }, 20);
 
