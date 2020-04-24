@@ -111,7 +111,7 @@
             // 遍历每一个小球，调用它们的update、render方法
             for (var i = 0; i < ballArr.length; i++) {
                 ballArr[i].update();
-                // 短路语法，表示“只有ballArr[i]还健在，没有自杀，才渲染”
+                // 短路语法，表示“只有ballArr[i]还健在w，没有自杀，才渲染”
                 ballArr[i] && ballArr[i].render();
             }
         }, 20);
